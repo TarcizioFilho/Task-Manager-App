@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML index file</title>
+    <!-- vincular o main.css ao Index.html -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <!-- estilo da página by bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css">
+    <!-- fonte do texto by google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQ  N" crossorigin="anonymous">
+    
+
+</head>
+<body>
+    <main class="container p-4">
+
+        <section id="app_gestao_de_tarefas">     
+
+            <h1 class="display-4 text-center mt-4 titulo"> App de Gestão de Tarefas</h1>
+            <br>
+            <div class="row">
+                <div class="col-md-4 offset-md-4 my-auto"> <!--Este div vai ocupar 4 colunas do espaço (centrado)-->
+                    <div class="card"> <!--Criação do objeto card-->
+                        <div class="card-header">
+                            <form action="/create-task" method="post"> <!--seção para criar o input das tarefas-->
+                                <div class="form-group">
+                                    <input type="text" name="content_tasks" placeholder="Create task" class="form-control" autofocus>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    Save
+                                </button>
+                            </form>    
+                            <div class="card-body">
+                                <ul class="list-group"><!--"ul" para designar um marcador-->
+                                    {% for task in tasks_list %}<!-- #é utilizado o mecanismo Jinja para que seja possível digitar a syntax do python, loop for para aceder as tasks da database-->
+                                    <li class="list-group-item"><!-- "il" para listar os elementos-->
+                                        <span class="{% if task.tasks_done==true %} task_done {% endif %}">
+                                        {{task.content}}</span> <!--invocar o conteudo da variável content(pertence a Classe Create_task))-->
+                                        <!--Botão checkbox -> faz um linha na tarefa quando acionado. SVG code do bootstrap, icone do checkbox-->
+                                        <a href="/task-done/{{task.id}}" style="text-decoration:none">
+                                            <svg class="bi bi-check-box" width="2em" height="2em" viewBox="0
+                            0 16 16" fill="green" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 010 .708l-7
+                            7a.5.5 0 01-.708 0l-3-3a.5.5 0 11.708-.708L8 9.293l6.646-6.647a.5.5 0 01.708 0z"
+                            clip-rule="evenodd"/>
+                                            <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 003 14.5h10a1.5
+                            1.5 0 001.5-1.5V8a.5.5 0 00-1 0v5a.5.5 0 01-.5.5H3a.5.5 0 01-.5-.5V3a.5.5 0
+                            01.5-.5h8a.5.5 0 000-1H3A1.5 1.5 0 001.5 3v10z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </a>
+                                        <!--Botão editar -> aciona o modal de confirmação de edição da tarefa. SVG code do bootstrap, icone do edit-->
+                                        <a href="/task-edit-id/{{task.id}}" style="text-decoration:none "> 
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" 
+                            fill="yellow" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502
+                            .646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.1
+                            96l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5
+                            1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5
+                            0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                        </svg>
+                                        </a>
+                                        <!--Botão excluir -> aciona o modal de confirmaçã para excluir a tarefa. SVG codes do bootstrap, icone da lixeira -->
+                                        <a href="/{{task.id}}" style="text-decoration:none"> 
+                                            <svg class="bi bi-trash" width="2em" height="2em" viewBox="0 0 16 
+                            16" fill="red" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0
+                            01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1
+                            0v6a.5.5 0 001 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0
+                            01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011
+                            1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882
+                            4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    {% endfor %}    
+                                </ul>
+                            </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!--modal de confirmação para excluir uma tarefa-->
+        {% if task_by_id != undefined %}
+
+        <section class="modal-remove">
+            <div id="card">
+
+                <a href="/#app_gestao_de_tarefas"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <h2>Confirmation</h2>
+                <hr>
+
+                <p>Delete task {{task_by_id.content}} ?</p>
+                <div id="btns">
+                    <a class="btn-cancel" href="/#app_gestao_de_tarefas">Cancel</a>
+                    <a class="btn-confirm" href="/remove-task/{{task_by_id.id}}">Confirm</a>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+    </section>
+    <!--fim do modal de confirmação para excluir uma tarefa-->
+
+    <!--modal de confirmação para editar uma tarefa-->
+    {% if task_by_id_edit != undefined %}
+
+    <section class="modal-edit">
+        <div id="card">
+
+            <a href="/#app_gestao_de_tarefas"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <h2>Edit task</h2>
+            <hr>
+
+            <p>Current task name: {{task_by_id_edit.content}}</p>
+            <form class="form" action="/update-task/{{task_by_id_edit.id}}" method="post">
+                    <input type="text" name="new_content_task" value="{{task_by_id_edit.new_content_task}}" placeholder="type a new name" class="form-control" autofocus>
+
+            <p>Confirm change?</p>
+
+            <div id="btns">
+                <a class="btn-cancel" href="/#app_gestao_de_tarefas">Cancel</a>
+                <a href="/update-task/{{task_by_id_edit.id}}">
+                    <input type="submit" class="btn-confirm" value="Confirm">
+                    </a>
+                </div>
+            </form>
+        </div>
+    </section>
+    {% endif %}
+    <!--fim fo modal de confirmação para editar uma tarefa-->
+    </main>
+</body>
+</html>

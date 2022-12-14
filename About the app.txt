@@ -1,0 +1,21 @@
+Task Manager
+
+Features: 
+	Create task;
+	Mark task as complete;
+	Edit task;
+	Delete Task.
+	
+
+Tech Stack:
+	   Python 3; 
+	   Visual Studio Code;
+	   Flask;
+	   Jinja2;
+	   Flask SQLAlchemy; 
+	   SQLite;
+	   Virtualenv;
+	   Bootstrap.
+	   GoogleFonts
+
+	

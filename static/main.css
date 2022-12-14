@@ -1,0 +1,165 @@
+body
+{
+    background: #C9D6FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.titulo
+{
+    font-family: 'Permanent Marker', cursive;
+}
+
+.task_done{
+    text-decoration: line-through;
+    color: #cfcfcf;
+}
+
+/* modal remoce style */
+
+section.modal-remove{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #00000070;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+section.modal-remove div#card{
+    width: 15rem;
+    position: relative;
+    background-color: #fff;
+    border-radius: .5rem;
+}
+
+section.modal-remove div#card h2{
+    padding: 1rem 0rem 0rem 0rem;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
+}
+
+section.modal-remove div#card hr{
+    width: 90%;
+    margin: 0 auto;
+}
+
+section.modal-remove div#card p{
+    padding: 0.5rem 0rem 0rem 0rem;
+    text-align: center;
+    margin: 0;
+}
+
+section.modal-remove div#card div#btns{
+    display: flex;
+    justify-content: center;
+    padding: 1rem 1rem 1rem 1rem;
+    text-decoration: none;
+}
+
+section.modal-remove div#card div#btns a.btn-cancel{
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+section.modal-remove div#card div#btns a.btn-cancel:hover{
+   color: #7487c1;
+}
+
+section.modal-remove div#card div#btns a.btn-confirm{
+    text-decoration: none;
+}
+
+section.modal-remove div#card div#btns a.btn-confirm:hover{
+    color: #7487c1;
+}
+/* end modal remove style */
+
+/* modal-edit style */
+
+section.modal-edit{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #00000070;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+section.modal-edit div#card{
+    width: 15rem;
+    position: relative;
+    background-color: #fff;
+    border-radius: .5rem;
+}
+
+section.modal-edit div#card h2{
+    padding: 1rem 0rem 0rem 0rem;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
+}
+
+section.modal-edit div#card hr{
+    width: 90%;
+    margin: 0 auto;
+}
+
+section.modal-edit div#card p{
+    padding: 0.5rem 0rem 0rem 0rem;
+    text-align: center;
+    margin: 0;
+}
+
+section.modal-edit div#card form.form {
+    padding: 0rem 1rem 1rem 1rem;
+}
+
+section.modal-edit div#card form.form input.form-control{
+    display: flex;
+    text-align: center;
+}
+
+section.modal-edit div#card  p{
+    padding: 1rem 0rem 0rem 0rem;
+}
+
+section.modal-edit div#card div#btns{
+    display: flex;
+    justify-content: center;
+    padding: 0rem 1rem 1rem 1rem;
+    text-decoration: none;
+}
+
+section.modal-edit div#card div#btns a.btn-cancel{
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+section.modal-edit div#card div#btns a.btn-cancel:hover{
+   color: #7487c1;
+}
+
+section.modal-edit div#card div#btns input.btn-confirm {
+    text-decoration: none;
+    background-color: #ffffff;
+    border: #fff;
+    font-weight: bolder;
+}
+
+section.modal-edit div#card div#btns input.btn-confirm:hover{
+    color: #7487c1;
+}
+/* end modal-edit style */
